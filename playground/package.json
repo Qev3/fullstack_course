@@ -1,0 +1,30 @@
+{
+  "name": "playground",
+  "version": "0.0.1",
+  "description": "test aplikace",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'ahoj'",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qev3/fullstack_course.git"
+  },
+  "author": "vojtakartus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Qev3/fullstack_course/issues"
+  },
+  "homepage": "https://github.com/Qev3/fullstack_course#readme",
+  "devDependencies": {
+    "@eslint/css": "^0.9.0",
+    "@eslint/js": "^9.30.1",
+    "@stylistic/eslint-plugin": "^5.1.0",
+    "eslint": "^9.30.1",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.3.0",
+    "typescript-eslint": "^8.36.0"
+  }
+}
