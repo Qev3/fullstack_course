@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabulka pro seznam kontaktů</title>
+</head>
+<body>
+    <table id="data" border="5">
+        <caption>Seznam kontaktů</caption>
+        <thead>
+        <tr>
+            <th>Jméno</th>
+            <th>Příjmení</th>
+            <th>Email</th>
+            <th>Telefon</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4">fullstackcourse*</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <form onsubmit="addRow(); return false;">
+        <label for="first_name">Jméno:</label><br>
+        <input type="text" id="first_name" name="first_name" required><br>
+
+        <label for="last_name">Příjmení:</label><br>
+        <input type="text" id="last_name" name="last_name" required><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="phone">Telefon:</label><br>
+        <input type="tel" id="phone" name="phone" required><br><br>
+    </form>
+
+    <script>
+        var addRow = () => {
+            const table = document.getElementById("data").querySelector("tbody");
+            const newRow = table.insertRow(-1);
+
+            ["phone", "email", "last_name", "first_name"].forEach((fieldName) => {
+                const newValue = document.getElementById(fieldName).value;
+                const newCell = newRow.insertCell(0);
+                let newText = document.createTextNode(newValue);
+                newCell.appendChild(newText);
+            });
+        };
+    </script>
+
+    <button onclick="addRow()">Přidej řádek</button>
+
+</body>
+</html>
