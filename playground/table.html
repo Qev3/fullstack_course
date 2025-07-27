@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Tabulka pro seznam kontaktů</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <table id="data" border="5">
+    <table id="data">
         <caption>Seznam kontaktů</caption>
         <thead>
         <tr>
@@ -24,19 +25,29 @@
         </tfoot>
     </table>
 
-    <form onsubmit="addRow(); return false;">
-        <label for="first_name">Jméno:</label><br>
-        <input type="text" id="first_name" name="first_name" required><br>
+    <div>
+    <form class="form" onsubmit="addRow(); return false;">
+        <div class="form_fn">
+        <label for="first_name">Jméno:</label>
+        <input type="text" id="first_name" name="first_name" required>
+        </div>
 
-        <label for="last_name">Příjmení:</label><br>
-        <input type="text" id="last_name" name="last_name" required><br>
+        <div class="form_ln">
+        <label for="last_name">Příjmení:</label>
+        <input type="text" id="last_name" name="last_name" required>
+        </div>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br>
+        <div class="form_email">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        </div>
 
-        <label for="phone">Telefon:</label><br>
-        <input type="tel" id="phone" name="phone" required><br><br>
+        <div class="form_tel">
+        <label for="phone">Telefon:</label>
+        <input type="tel" id="phone" name="phone" required>
+        </div>
     </form>
+    </div>
 
     <script>
         var addRow = () => {
