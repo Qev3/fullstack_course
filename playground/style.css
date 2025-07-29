@@ -1,0 +1,50 @@
+
+table {
+    border-collapse: collapse;
+}
+
+thead, tfoot{
+    border: 1px solid black;
+    font-weight: bold;
+}
+
+tbody td {
+    border: none;
+}
+
+tbody tr:nth-child(even) {
+    background-color: darkkhaki;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: bisque;
+}
+
+tbody tr:hover {
+    background-color: lightblue;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+    .form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 10px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+}
+
