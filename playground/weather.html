@@ -1,0 +1,70 @@
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Předpověď počasí</title>
+</head>
+<body>
+
+<form id="weather-form">
+    <label for="cities">Zadejte města (max 3):</label><br>
+    <input type="text" id="cities" name="cities" required>
+    <button type="submit">Vypočítat teplotu</button>
+</form>
+
+<div id="results"></div>
+
+<script>
+    const form = document.getElementById("weather-form");
+    const results = document.getElementById("results");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        results.innerHTML = "";
+
+        let input = document.getElementById("cities").value.trim();
+        if (!input) return;
+
+        let cities = input.split(/[;,]/).map(c => c.trim()).filter(c => c);
+        cities = [...new Set(cities)];
+        if (cities.length > 3) {
+            results.innerHTML = "<p>Můžete zadat maximálně 3 města.</p>";
+            return;
+        }
+
+        for (const city of cities) {
+            try {
+                const geoResp = await fetch(
+                    `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=cs&format=json`
+                );
+                if (!geoResp.ok) throw new Error("Chyba geocoding API");
+                const geoData = await geoResp.json();
+                if (!geoData.results || geoData.results.length === 0) {
+                    results.innerHTML += `<p>Město "${city}" nebylo nalezeno.</p>`;
+                    continue;
+                }
+
+                const { latitude, longitude, name } = geoData.results[0];
+
+                const weatherResp = await fetch(
+                    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=temperature_2m_max,temperature_2m_min&forecast_days=1&timezone=auto`
+                );
+                if (!weatherResp.ok) throw new Error("Chyba weather API");
+                const weatherData = await weatherResp.json();
+
+                const min = weatherData.daily.temperature_2m_min[0];
+                const max = weatherData.daily.temperature_2m_max[0];
+
+
+                const el = document.createElement("div");
+                el.innerHTML = `<h3>${name}</h3>
+                          <p>Min: ${min} °C, Max: ${max} °C</p>`;
+                results.appendChild(el);
+
+            } catch (err) {
+                results.innerHTML += `<p>Nastala chyba pro město "${city}": ${err.message}</p>`;
+            }
+        }
+    });
+</script>
+</body>
+</html>
