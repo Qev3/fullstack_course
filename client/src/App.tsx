@@ -3,10 +3,11 @@
 //import viteLogo from '/vite.svg'
 import './App.css'
 import { Event } from "./components/Event/Event.tsx";
-import { WrapperDiv } from "./components/WrapperDiv/WrapperDiv.tsx";
+import type { DateRecord } from "./components/Event/Event.tsx";
+
 
 function App() {
-    const birthdayDates = [
+    const birthdayDates: DateRecord[] = [
         {
             timestamp: new Date("2025-05-01").getTime(),
             records: [
@@ -36,7 +37,7 @@ function App() {
         },
     ];
 
-    const boulderingDates = [
+    const boulderingDates: DateRecord[] = [
         {
             timestamp: new Date("2025-06-10").getTime(),
             records: [
@@ -57,7 +58,7 @@ function App() {
         },
     ];
 
-    const birdwatchingDates = [
+    const birdwatchingDates: DateRecord[] = [
         {
             timestamp: new Date("2025-07-15").getTime(),
             records: [

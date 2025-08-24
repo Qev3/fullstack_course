@@ -1,5 +1,6 @@
 import * as React from "react";
 
+
 export type UserRecord = {
     name: string;
     answer: "yes" | "no" | "if-needed";
@@ -18,7 +19,7 @@ export type EventProps = {
     dates: DateRecord[];
 }
 
-export function Event({ location, title, dates }: EventProps) {
+export const Event: React.FC<EventProps> = ({ location, title, dates }) => {
     const users = Array.from(
         new Set(dates.flatMap((d) => d.records.map((r) => r.name)))
     );
